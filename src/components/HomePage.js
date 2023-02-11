@@ -22,7 +22,7 @@ export default function HomePage() {
           <li>
             <a
               href='#'
-              className=' p-2 px-6 text-xs bg-gradient-to-r from-[#2B59FF] to-[#BB2BFF] '
+              className='rounded-md p-2 px-6 text-xs bg-gradient-to-r from-[#2B59FF] to-[#BB2BFF] '
             >
               Sign Up
             </a>
@@ -48,7 +48,7 @@ export default function HomePage() {
       <div className='mx-auto block w-fit m-5  text-xs text-white'>
         <a
           href='#'
-          className=' p-2 px-6 bg-gradient-to-r from-[#2B59FF] to-[#BB2BFF] '
+          className='rounded-md p-2 px-6 bg-gradient-to-r from-[#2B59FF] to-[#BB2BFF] '
         >
           Explore Now
         </a>
@@ -63,6 +63,7 @@ export default function HomePage() {
       <div className='w-72 h-72 blur-3xl rounded-full bg-[#A930FE]/10 absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2'></div>
       <div className='w-48 h-48 blur-3xl rounded-full bg-[#FC743A]/10 absolute top-2/3 left-10 transform -translate-x-1/2 -translate-y-1/2'></div>
       <div className='w-48 h-48 blur-3xl rounded-full bg-[#F9BC52]/10 absolute top-2/3 -right-36 transform -translate-x-1/2 -translate-y-1/2'></div>
+      <div className='w-48 h-48 blur-3xl rounded-full bg-[#f00]/10 absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2'></div>
     </div>
   )
 }
