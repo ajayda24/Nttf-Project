@@ -28,8 +28,8 @@ export default function AuthPage() {
     }
   }
   return (
-    <div className=' flex justify-center items-center min-h-screen min-w-full bg-[#12141D] relative overflow-x-hidden'>
-      <div className='w-1/2 sm:w-80 h-2/3 sm:h-2/4 bg-white/10 text-center text-white p-4 text-xl flex flex-col justify-start shadow-2xl'>
+    <div className=' flex justify-center items-center min-h-screen min-w-full bg-[#12141D] relative overflow-x-hidden p-5'>
+      <div className='w-full sm:w-80 h-2/3 sm:h-2/4 bg-white/10 text-center text-white p-4 text-xl flex flex-col justify-start shadow-2xl'>
         <h3 className='text-left text-base flex  items-center gap-1 pb-5'>
           <GiNestedHexagons />
           <Link href='/'>AI ULTRA</Link>
@@ -44,14 +44,14 @@ export default function AuthPage() {
           width={200}
         />
         <button
-          className='bg-white shadow-lg font-bold text-black text-base px-6 gap-3 py-2 flex justify-between items-center  rounded-md'
+          className='bg-white shadow-lg font-bold text-black text-base px-6 gap-3 py-2 flex  items-center  rounded-md'
           onClick={googleSignUp}
         >
           <FcGoogle size={'1.3rem'} />
           <p> Continue with Google</p>
         </button>
         <button
-          className='bg-blue-700 shadow-lg font-bold text-white text-base px-6 gap-3 py-2 flex justify-between items-center mt-5 rounded-md'
+          className='bg-blue-700 shadow-lg font-bold text-white text-base px-6 gap-3 py-2 flex  items-center mt-5 rounded-md'
           onClick={signInWithFacebook}
           id='sign-in-phone'
         >
@@ -59,7 +59,7 @@ export default function AuthPage() {
           <p> Continue with Facebook</p>
         </button>
         <button
-          className='shadow-lg font-bold text-white bg-black text-base px-6 gap-3 py-2 flex justify-between items-center mt-5 rounded-md'
+          className='shadow-lg font-bold text-white bg-black text-base px-6 gap-3 py-2 flex  items-center mt-5 rounded-md'
           onClick={signInWithTwitter}
         >
           <FaTwitter size={'1.5rem'} />
