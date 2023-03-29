@@ -24,7 +24,7 @@ export default function HomePage() {
               href='#'
               className='rounded-md p-2 px-6 text-xs bg-gradient-to-r from-[#2B59FF] to-[#BB2BFF] '
             >
-              Sign Up
+              Sign In
             </a>
           </li>
         </ul>
