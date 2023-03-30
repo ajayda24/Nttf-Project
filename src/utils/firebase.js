@@ -6,6 +6,7 @@ import {
   getAuth,
   signInWithPopup,
   signOut,
+  signInWithRedirect,
 } from 'firebase/auth'
 
 const firebaseConfig = {
@@ -29,10 +30,10 @@ const signInWithGoogle = async () => {
     const res = await signInWithPopup(auth, googleProvider)
     const user = res.user
     console.log(user)
-    return [false, 'Signed in with google successfully.']
+    return [false, user, 'Signed in with google successfully.']
   } catch (err) {
     console.error(err)
-    return [true, 'Signed in with google failed.']
+    return [true, null, 'Signing in with google failed.']
   }
 }
 
@@ -41,9 +42,11 @@ const signInWithTwitter = async () => {
     .then((result) => {
       const user = result.user
       console.log(user)
+      return [false, user, 'Signed in with twitter successfully.']
     })
     .catch((error) => {
       console.log(error)
+      return [true, null, 'Signing in with twitter failed.']
     })
 }
 
@@ -52,10 +55,10 @@ const signInWithFacebook = async () => {
     const res = await signInWithPopup(auth, facebookProvider)
     const user = res.user
     console.log(user)
-    return [false, 'Signed in with facebook successfully.']
+    return [false, user, 'Signed in with facebook successfully.']
   } catch (err) {
     console.error(err)
-    return [true, 'Signed in with facebook failed.']
+    return [true, null, 'Signing in with facebook failed.']
   }
 }
 

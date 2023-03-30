@@ -1,6 +1,9 @@
-import { useRouter } from 'next/router'
+import DashboardPage from '@/components/DashboardPage'
 
 export default function Dashboard() {
-  const router = useRouter()
-  return <div>Dashboard</div>
+  return (
+    <>
+      <DashboardPage />
+    </>
+  )
 }

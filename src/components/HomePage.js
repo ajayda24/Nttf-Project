@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import HomePageImage from '../../public/assets/images/HomePage.png'
 import { GiNestedHexagons } from 'react-icons/gi'
+import Link from 'next/link'
 
 export default function HomePage() {
   return (
@@ -20,12 +21,12 @@ export default function HomePage() {
         </ul>
         <ul className='flex gap-10'>
           <li>
-            <a
-              href='#'
+            <Link
+              href='/login'
               className='rounded-md p-2 px-6 text-xs bg-gradient-to-r from-[#2B59FF] to-[#BB2BFF] '
             >
               Sign In
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
