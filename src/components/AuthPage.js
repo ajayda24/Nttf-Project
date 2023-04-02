@@ -16,6 +16,7 @@ import {
   useSignInWithGithub,
   useSignInWithGoogle,
 } from 'react-firebase-hooks/auth'
+import Spinner from './Spinner'
 
 export default function AuthPage() {
   const router = useRouter()
@@ -29,8 +30,8 @@ export default function AuthPage() {
     router.push('/dashboard')
   }
 
-  if (loading || !user) {
-    return <div>Loading...</div>
+  if (loading) {
+    return <Spinner />
   }
   return (
     <div className=' flex justify-center items-center min-h-screen min-w-full bg-[#12141D] relative overflow-x-hidden p-5'>
