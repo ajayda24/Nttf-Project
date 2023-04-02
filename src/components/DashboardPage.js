@@ -1,8 +1,14 @@
 import useAuthentication from '@/hooks/useAuthentication'
-import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
+import Spinner from './Spinner'
 
 export default function DashboardPage() {
-  const { authId } = useSelector((state) => state.auth)
-  useAuthentication()
-  return <div>Dashboard - {authId}</div>
+  const router = useRouter()
+  const [user, loading] = useAuthentication()
+  if (loading) {
+    return <Spinner />
+  }
+  return (
+    <div className=' flex justify-center items-center min-h-screen min-w-full bg-[#12141D] relative overflow-x-hidden p-5'></div>
+  )
 }

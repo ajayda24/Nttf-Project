@@ -1,21 +1,22 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { auth } from '@/utils/firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
 import { useSelector } from 'react-redux'
 
 export default function useAuthentication() {
   const router = useRouter()
-  const [isLoading, setIsLoading] = useState(true)
-  const { isAuthenticated } = useSelector((state) => state.auth)
-  console.log(isAuthenticated)
+  const [user, loading, error] = useAuthState(auth)
   useEffect(() => {
-    if (isAuthenticated == false) {
-      // window.location = '/login'
-      router.push('/login')
-    } else {
-      setIsLoading(false)
+    if (!loading) {
+      if (error || !user) {
+        router.push('/login')
+      }
     }
-  }, [isAuthenticated, router])
-  if (isLoading) {
-    return <div>Loading...</div>
+  }, [user, loading, error, router])
+  if (loading || !user) {
+    return [null, true]
+  } else if (user && !error) {
+    return [user, false]
   }
 }

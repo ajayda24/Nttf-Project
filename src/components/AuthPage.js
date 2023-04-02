@@ -1,41 +1,36 @@
-import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux'
-import { logIn } from '@/store/authSlice'
 
 import { GiNestedHexagons } from 'react-icons/gi'
 import { FcGoogle } from 'react-icons/fc'
-import { FaFacebook, FaTwitter } from 'react-icons/fa'
+import { FaFacebook, FaGithub } from 'react-icons/fa'
 
 import loginLogo from '../../public/assets/images/login.svg'
 
+import { auth } from '../utils/firebase'
+
 import {
-  signInWithGoogle,
-  signInWithTwitter,
-  signInWithFacebook,
-} from '../utils/firebase'
-import { useAuthState } from 'react-firebase-hooks/auth'
+  useAuthState,
+  useSignInWithFacebook,
+  useSignInWithGithub,
+  useSignInWithGoogle,
+} from 'react-firebase-hooks/auth'
 
 export default function AuthPage() {
   const router = useRouter()
-  const dispatch = useDispatch()
+  const [signInWithGoogle] = useSignInWithGoogle(auth)
+  const [signInWithFacebook] = useSignInWithFacebook(auth)
+  const [signInWithGithub] = useSignInWithGithub(auth)
 
-  const socialSignUp = async (provider) => {
-    let data
-    if (provider == 'google') {
-      data = await signInWithGoogle()
-    } else if (provider == 'facebook') {
-      data = await signInWithFacebook()
-    } else {
-      data = await signInWithTwitter()
-    }
-    const [error, user, message] = data
-    if (!error) {
-      dispatch(logIn({ authId: user.accessToken, userId: user.uid }))
-      router.push('/dashboard')
-    }
+  const [user, loading, error] = useAuthState(auth)
+
+  if (!error && !loading && user) {
+    router.push('/dashboard')
+  }
+
+  if (loading || !user) {
+    return <div>Loading...</div>
   }
   return (
     <div className=' flex justify-center items-center min-h-screen min-w-full bg-[#12141D] relative overflow-x-hidden p-5'>
@@ -55,14 +50,15 @@ export default function AuthPage() {
         />
         <button
           className='bg-white shadow-lg font-bold text-black text-base px-6 gap-3 py-2 flex  items-center  rounded-md'
-          onClick={() => socialSignUp('google')}
+          // onClick={() => socialSignUp('google')}
+          onClick={() => signInWithGoogle()}
         >
           <FcGoogle size={'1.3rem'} />
           <p> Continue with Google</p>
         </button>
         <button
           className='bg-blue-700 shadow-lg font-bold text-white text-base px-6 gap-3 py-2 flex  items-center mt-5 rounded-md'
-          onClick={() => socialSignUp('facebook')}
+          onClick={() => signInWithFacebook()}
           id='sign-in-phone'
         >
           <FaFacebook size={'1.5rem'} color='white' />
@@ -70,10 +66,10 @@ export default function AuthPage() {
         </button>
         <button
           className='shadow-lg font-bold text-white bg-black text-base px-6 gap-3 py-2 flex  items-center mt-5 rounded-md'
-          onClick={() => socialSignUp('twitter')}
+          onClick={() => signInWithGithub()}
         >
-          <FaTwitter size={'1.5rem'} />
-          <p> Continue with Twitter </p>
+          <FaGithub size={'1.5rem'} />
+          <p> Continue with Github </p>
         </button>
       </div>
     </div>
