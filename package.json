@@ -11,6 +11,7 @@
   "dependencies": {
     "@next/font": "13.1.6",
     "@reduxjs/toolkit": "^1.9.3",
+    "daisyui": "^2.51.5",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
     "firebase": "^9.18.0",

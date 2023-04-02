@@ -1,4 +1,4 @@
-import DashboardPage from '@/components/DashboardPage'
+import DashboardPage from '@/components/dashboard/DashboardPage'
 
 export default function Dashboard() {
   return (
