@@ -1,6 +1,5 @@
 import Link from "next/link"
 import Image from "next/image"
-import { useRouter } from "next/router"
 
 import { GiNestedHexagons } from "react-icons/gi"
 import { FcGoogle } from "react-icons/fc"
@@ -11,32 +10,19 @@ import loginLogo from "../../public/assets/images/login.svg"
 import { auth } from "../utils/firebase"
 
 import {
-  useAuthState,
   useSignInWithFacebook,
   useSignInWithGithub,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth"
 import Spinner from "./Spinner"
-import { useEffect, useState } from "react"
 import useAuthentication from "@/hooks/useAuthentication"
 
 export default function AuthPage() {
-  const router = useRouter()
-  // const [authLoading, setAuthLoading] = useState(false)
-
   const [signInWithGoogle] = useSignInWithGoogle(auth)
   const [signInWithFacebook] = useSignInWithFacebook(auth)
   const [signInWithGithub] = useSignInWithGithub(auth)
 
   const [user, loading] = useAuthentication()
-  // console.log(user, loading)
-  // const [user, loading, error] = useAuthState(auth)
-
-  // useEffect(() => {
-  //   if (!error && !loading && user) {
-  //     router.push("/dashboard")
-  //   }
-  // }, [error, loading, user, router])
 
   if (loading) {
     return <Spinner />
