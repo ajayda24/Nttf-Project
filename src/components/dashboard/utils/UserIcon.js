@@ -19,7 +19,9 @@ export default function UserIcon({ name = "ZYX", photoUrl, gotoProfile }) {
         />
       ) : (
         <div className="w-6 h-6  rounded-full text-center bg-[#12141D]/90 flex justify-center items-center select-none">
-          <p className="text-base font-bold cursor-pointer">{name[0]}</p>
+          <p className="text-base font-bold cursor-pointer">
+            {name[0].toUpperCase()}
+          </p>
         </div>
       )}
     </div>

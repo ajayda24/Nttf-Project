@@ -4,8 +4,12 @@ import { MdFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 
 import nFormatter from "@/utils/numberFormatter";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { changeUserSelectedPage } from "@/store/userSlice";
 
 export default function Card(props) {
+  const dispatch = useDispatch();
+
   const [doneDoubleTap, setDoneDoubleTap] = useState(false);
   const [displayLove, setDisplayLove] = useState(false);
   const {
@@ -15,7 +19,7 @@ export default function Card(props) {
     imageUrl = "",
     userImage = "",
     uid = "1234",
-    username,
+    username = "zyx",
   } = props;
   const router = useRouter();
   const [image, setImage] = useState({
@@ -41,7 +45,7 @@ export default function Card(props) {
   };
 
   const userProfileClick = () => {
-    router.push(`/users/${image.uid}`);
+    dispatch(changeUserSelectedPage(["userprofile", image.uid]));
   };
   const likeOnDoubleTap = (e) => {
     setDisplayLove(true);
@@ -60,7 +64,7 @@ export default function Card(props) {
       onDoubleClick={likeOnDoubleTap}
     >
       {displayLove && (
-        <MdOutlineFavorite className="text-red-500/60 text-6xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 " />
+        <MdOutlineFavorite className="text-red-500/80 text-6xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 " />
       )}
       <div className="absolute bottom-0 p-2 px-3 min-w-full bg-black/30 flex justify-between items-center ">
         <UserIcon gotoProfile={userProfileClick} />

@@ -8,6 +8,7 @@ import Gallery from "./Gallery";
 import Favourites from "./Favourites";
 import CreateImage from "./CreateImage";
 import Chat from "./Chat";
+import UserProfile from "./UserProfile";
 
 export default function DashboardPage() {
   const [user, loading] = useAuthentication();
@@ -25,6 +26,7 @@ export default function DashboardPage() {
       {userSelectedPage == "add" && <CreateImage />}
       {userSelectedPage == "favourites" && <Favourites />}
       {userSelectedPage == "chat" && <Chat />}
+      {userSelectedPage[0] == "userprofile" && <UserProfile />}
       <Footer />
     </div>
   );

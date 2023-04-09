@@ -45,7 +45,9 @@ export default function Navbar({ photoURL, uid, name }) {
               tabIndex={0}
               className="w-8 h-8  rounded-full text-center bg-[#12141D]/80 flex justify-center items-center "
             >
-              <p className="text-xl font-black cursor-pointer">{name[0]}</p>
+              <p className="text-xl font-black cursor-pointer">
+                {name[0].toUpperCase()}
+              </p>
             </div>
           )}
           <ul

@@ -5,7 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/userSlice";
 
-export default function useAuthentication() {
+export default function useAuthentication(forwardUrl) {
   const router = useRouter();
   const dispatch = useDispatch();
   const [user, loading, error] = useAuthState(auth);
@@ -18,7 +18,7 @@ export default function useAuthentication() {
         dispatch(
           setUser({ photoUrl: photoURL, uid, email, name: displayName })
         );
-        router.push("/dashboard");
+        router.push(forwardUrl || "/dashboard");
       }
     }
   }, [user, loading, error]);
