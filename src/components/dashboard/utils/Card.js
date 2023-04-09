@@ -6,6 +6,8 @@ import nFormatter from "@/utils/numberFormatter";
 import { useRouter } from "next/router";
 
 export default function Card(props) {
+  const [doneDoubleTap, setDoneDoubleTap] = useState(false);
+  const [displayLove, setDisplayLove] = useState(false);
   const {
     imageId,
     userLiked = false,
@@ -29,8 +31,10 @@ export default function Card(props) {
     // fetch update image
     setImage((prevState) => {
       if (prevState.userLiked) {
+        setDoneDoubleTap(false);
         return { ...prevState, userLiked: false, likes: +prevState.likes - 1 };
       } else {
+        setDoneDoubleTap(true);
         return { ...prevState, userLiked: true, likes: +prevState.likes + 1 };
       }
     });
@@ -39,12 +43,28 @@ export default function Card(props) {
   const userProfileClick = () => {
     router.push(`/users/${image.uid}`);
   };
+  const likeOnDoubleTap = (e) => {
+    setDisplayLove(true);
+    setTimeout(() => {
+      setDisplayLove(false);
+    }, 300);
+    if (!doneDoubleTap) {
+      setDoneDoubleTap(true);
+      reactImage();
+    }
+  };
 
   return (
-    <div className="bg-black/20 w-96 h-96 sm:w-64 sm:h-64 relative">
-      <div className="absolute bottom-0 p-2 px-3 min-w-full bg-black/30 flex justify-between items-center">
+    <div
+      className="bg-black/20 w-96 h-96 sm:w-64 sm:h-64 relative"
+      onDoubleClick={likeOnDoubleTap}
+    >
+      {displayLove && (
+        <MdOutlineFavorite className="text-red-500/60 text-6xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 " />
+      )}
+      <div className="absolute bottom-0 p-2 px-3 min-w-full bg-black/30 flex justify-between items-center ">
         <UserIcon gotoProfile={userProfileClick} />
-        <div className="flex gap-2">
+        <div className="flex gap-2 select-none">
           <p>{nFormatter(image.likes)}</p>
           {image.userLiked ? (
             <MdOutlineFavorite

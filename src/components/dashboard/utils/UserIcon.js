@@ -18,7 +18,7 @@ export default function UserIcon({ name = "ZYX", photoUrl, gotoProfile }) {
           height={100}
         />
       ) : (
-        <div className="w-6 h-6  rounded-full text-center bg-[#12141D]/90 flex justify-center items-center ">
+        <div className="w-6 h-6  rounded-full text-center bg-[#12141D]/90 flex justify-center items-center select-none">
           <p className="text-base font-bold cursor-pointer">{name[0]}</p>
         </div>
       )}

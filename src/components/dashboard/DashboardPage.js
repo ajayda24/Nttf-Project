@@ -18,7 +18,7 @@ export default function DashboardPage() {
   }
   const { photoURL, uid, email, displayName } = user;
   return (
-    <div className=" flex flex-col   min-h-screen min-w-full bg-[#12141D] relative  p-2 sm:p-5">
+    <div className=" flex flex-col   min-h-screen min-w-full bg-[#12141D] relative  p-2 sm:p-5 select-none">
       <Navbar photoURL={photoURL} uid={uid} name={displayName} />
       {userSelectedPage == "home" && <Home />}
       {userSelectedPage == "gallery" && <Gallery />}
