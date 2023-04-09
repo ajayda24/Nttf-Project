@@ -21,7 +21,7 @@ export default function Navbar({ photoURL, uid, name }) {
     }
   };
   return (
-    <nav className="min-w-full h-fit flex  justify-between items-center px-2 sm:px-6  text-white ">
+    <nav className="min-w-full h-fit flex  justify-between items-center px-2 sm:px-6  text-white">
       <ul className="">
         <li className="font-medium flex items-center justify-evenly gap-3">
           <GiNestedHexagons />

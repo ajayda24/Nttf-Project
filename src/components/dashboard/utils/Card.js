@@ -5,16 +5,25 @@ import { MdFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import nFormatter from "@/utils/numberFormatter";
 import { useRouter } from "next/router";
 
-export default function Card() {
+export default function Card(props) {
+  const {
+    imageId,
+    userLiked = false,
+    likes = 1950,
+    imageUrl = "",
+    userImage = "",
+    uid = "1234",
+    username,
+  } = props;
   const router = useRouter();
   const [image, setImage] = useState({
-    imageId: "",
-    userLiked: false,
-    likes: 1950,
-    imageUrl: "",
-    userImage: "",
-    uid: "1234",
-    username: "",
+    imageId: imageId,
+    userLiked: userLiked,
+    likes: likes,
+    imageUrl: imageUrl,
+    userImage: userImage,
+    uid: uid,
+    username: username,
   });
   const reactImage = () => {
     // fetch update image
@@ -32,7 +41,7 @@ export default function Card() {
   };
 
   return (
-    <div className="bg-black/20 w-64 h-64 relative">
+    <div className="bg-black/20 w-96 h-96 sm:w-64 sm:h-64 relative">
       <div className="absolute bottom-0 p-2 px-3 min-w-full bg-black/30 flex justify-between items-center">
         <UserIcon gotoProfile={userProfileClick} />
         <div className="flex gap-2">

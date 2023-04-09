@@ -17,9 +17,8 @@ export default function DashboardPage() {
     return <Spinner />;
   }
   const { photoURL, uid, email, displayName } = user;
-  console.log(userSelectedPage);
   return (
-    <div className=" flex flex-col   min-h-screen min-w-full bg-[#12141D] relative overflow-x-hidden p-2 sm:p-5">
+    <div className=" flex flex-col   min-h-screen min-w-full bg-[#12141D] relative  p-2 sm:p-5">
       <Navbar photoURL={photoURL} uid={uid} name={displayName} />
       {userSelectedPage == "home" && <Home />}
       {userSelectedPage == "gallery" && <Gallery />}
