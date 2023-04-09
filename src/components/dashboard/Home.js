@@ -1,21 +1,25 @@
-import React from "react";
+import Card from "./utils/Card";
 
 export default function Home() {
   return (
-    <div className="p-5 py-8 flex flex-wrap gap-5 md:px-16">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+    <div className="p-2 sm:p-5 py-8 text-white">
+      <h2>Trending</h2>
+      <div className="p-5 flex justify-evenly flex-wrap gap-5 ">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
+      <h2>Recently Added</h2>
+      <div className="p-5 py-8 flex justify-evenly flex-wrap gap-5 ">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
     </div>
   );
 }
-
-const Card = () => {
-  return (
-    <div className="bg-white/10 w-60 h-60 relative">
-      <div className="absolute bottom-0 p-5 min-w-full bg-white/5"></div>
-    </div>
-  );
-};

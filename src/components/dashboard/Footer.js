@@ -1,4 +1,4 @@
-import { RiGalleryLine } from "react-icons/ri";
+import { HiOutlinePhotograph } from "react-icons/hi";
 import { GoHome } from "react-icons/go";
 import { BiImageAdd } from "react-icons/bi";
 import { BsArrowThroughHeart } from "react-icons/bs";
@@ -22,7 +22,7 @@ export default function Footer() {
     btn == "home" && setSelectHomeButton(true);
     btn == "gallery" && setSelectGalleryButton(true);
     btn == "add" && setSelectAddButton(true);
-    btn == "like" && setSelectLikeButton(true);
+    btn == "favourites" && setSelectLikeButton(true);
     btn == "chat" && setSelectChatButton(true);
   };
   useEffect(() => {
@@ -35,14 +35,14 @@ export default function Footer() {
   }, [userState]);
   return (
     <div className="flex justify-center min-w-full">
-      <div className="z-40 fixed bottom-0 sm:bottom-5 min-w-full sm:min-w-fit p-3 px-8 sm:rounded-md bg-white/10 flex gap-8 sm:gap-16 justify-evenly items-center">
+      <div className="z-40 fixed bottom-0 sm:bottom-5 min-w-full sm:min-w-fit p-3 px-8  sm:rounded-md bg-black/90 flex sm:gap-16 justify-between items-center">
         <GoHome
           className={`${
             selectHomeButton ? "text-red-500" : "text-white"
           } text-2xl`}
           onClick={() => dispatch(changeUserSelectedPage("home"))}
         />
-        <RiGalleryLine
+        <HiOutlinePhotograph
           className={`${
             selectGalleryButton ? "text-red-500" : "text-white"
           } text-2xl`}
@@ -66,7 +66,7 @@ export default function Footer() {
             className={`${
               selectLikeButton ? "text-red-500" : "text-white"
             } text-2xl`}
-            onClick={() => dispatch(changeUserSelectedPage("like"))}
+            onClick={() => dispatch(changeUserSelectedPage("favourites"))}
           />
         )}
 

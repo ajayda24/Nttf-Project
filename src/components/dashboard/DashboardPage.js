@@ -4,6 +4,10 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { useSelector } from "react-redux";
 import Home from "./Home";
+import Gallery from "./Gallery";
+import Favourites from "./Favourites";
+import CreateImage from "./CreateImage";
+import Chat from "./Chat";
 
 export default function DashboardPage() {
   const [user, loading] = useAuthentication();
@@ -13,10 +17,15 @@ export default function DashboardPage() {
     return <Spinner />;
   }
   const { photoURL, uid, email, displayName } = user;
+  console.log(userSelectedPage);
   return (
-    <div className=" flex flex-col   min-h-screen min-w-full bg-[#12141D] relative overflow-x-hidden p-5">
+    <div className=" flex flex-col   min-h-screen min-w-full bg-[#12141D] relative overflow-x-hidden p-2 sm:p-5">
       <Navbar photoURL={photoURL} uid={uid} name={displayName} />
-      <Home />
+      {userSelectedPage == "home" && <Home />}
+      {userSelectedPage == "gallery" && <Gallery />}
+      {userSelectedPage == "add" && <CreateImage />}
+      {userSelectedPage == "favourites" && <Favourites />}
+      {userSelectedPage == "chat" && <Chat />}
       <Footer />
     </div>
   );
