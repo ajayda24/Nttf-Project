@@ -6,6 +6,7 @@ export default function Favourites() {
   const [images, setImages] = useState([]);
   const [imageLoaded, setImageLoaded] = useState(false);
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     // fetch gallery images
     setTimeout(() => {
       setImageLoaded(true);
