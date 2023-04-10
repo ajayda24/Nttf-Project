@@ -35,7 +35,7 @@ export default function Footer() {
   }, [userState]);
   return (
     <div className="flex justify-center min-w-full">
-      <div className="z-40 fixed bottom-0 sm:bottom-5 min-w-full sm:min-w-fit p-3 px-8  sm:rounded-md bg-black/90 flex sm:gap-16 justify-between items-center">
+      <div className="z-40 fixed bottom-0 sm:bottom-2 min-w-full sm:min-w-fit p-3 px-8  sm:rounded-md bg-black/90 flex sm:gap-16 justify-between items-center">
         <GoHome
           className={`${
             selectHomeButton ? "text-red-500" : "text-white"
