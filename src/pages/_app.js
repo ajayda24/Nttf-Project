@@ -8,6 +8,7 @@ export default function App({ Component, pageProps }) {
     <Provider store={store}>
       <Head>
         <title>AI Ultra</title>
+        <link rel="icon" type="image/png" href="/logo512.png"></link>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
@@ -22,21 +23,21 @@ export default function App({ Component, pageProps }) {
         />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-config" content="./icons/browserconfig.xml" />
+        <meta name="msapplication-config" content="/icons/browserconfig.xml" />
         <meta name="msapplication-TileColor" content="#2B5797" />
         <meta name="msapplication-tap-highlight" content="no" />
         <meta name="theme-color" content="#000000" />
 
-        <link rel="apple-touch-icon" href="./logo196.png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="./logo196.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="./logo196.png" />
-        <link rel="apple-touch-icon" sizes="167x167" href="./logo196.png" />
+        <link rel="apple-touch-icon" href="/logo196.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/logo196.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/logo196.png" />
+        <link rel="apple-touch-icon" sizes="167x167" href="/logo196.png" />
 
-        <link rel="icon" type="image/png" sizes="32x32" href="./logo16.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="./logo16.png" />
-        <link rel="manifest" href="./manifest.json" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/logo16.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/logo16.png" />
+        <link rel="manifest" href="/manifest.json" />
         <link rel="mask-icon" href="/logo.svg" color="#5bbad5" />
-        <link rel="shortcut icon" href="./favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:url" content="https://aiultra.vercel.app" />
