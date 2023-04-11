@@ -1,6 +1,7 @@
 {
   "name": "AI Ultra",
   "short_name": "AI Ultra",
+  "description": "AI Ultra is an Image gallery web application, converting creative sentence to images with the power of Artificial Intelligence.",
   "icons": [
     {
       "src": "/logo196.png",
@@ -21,7 +22,8 @@
   ],
   "theme_color": "#FFFFFF",
   "background_color": "#FFFFFF",
-  "start_url": "/",
+  "start_url": "./",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait"
 }
