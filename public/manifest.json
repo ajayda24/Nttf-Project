@@ -5,13 +5,13 @@
   "icons": [
     {
       "src": "logo196.png",
-      "sizes": "196x196",
+      "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
       "src": "logo256.png",
-      "sizes": "256x256",
+      "sizes": "384x384",
       "type": "image/png"
     },
     {

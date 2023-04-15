@@ -5,14 +5,22 @@ import { useSignOut } from "react-firebase-hooks/auth";
 import { GiNestedHexagons } from "react-icons/gi";
 import Spinner from "../Spinner";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { changeUserSelectedPage } from "@/store/userSlice";
 
 export default function Navbar({ photoURL, uid, name }) {
   const [userImgErr, setUserImgErr] = useState(false);
   const [signOut, loading, error] = useSignOut(auth);
   const router = useRouter();
+  const dispatch = useDispatch();
   if (loading) {
     return <Spinner />;
   }
+
+  const gotoUserProfile = () => {
+    dispatch(changeUserSelectedPage("gallery"));
+  };
 
   const userSignOut = async () => {
     const success = await signOut();
@@ -25,7 +33,7 @@ export default function Navbar({ photoURL, uid, name }) {
       <ul className="">
         <li className="font-medium flex items-center justify-evenly gap-3">
           <GiNestedHexagons />
-          <a href="#">AI ULTRA</a>
+          <Link href="/">AI ULTRA</Link>
         </li>
       </ul>
       <div className="flex gap-10">
@@ -55,7 +63,7 @@ export default function Navbar({ photoURL, uid, name }) {
             className="dropdown-content menu m-1 p-2 shadow-2xl bg-base-200 rounded-box w-52 text-black text-sm font-semibold"
           >
             <li>
-              <p>{name}</p>
+              <p onClick={gotoUserProfile}>{name}</p>
             </li>
             <li>
               <p onClick={userSignOut}>Sign Out</p>

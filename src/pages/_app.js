@@ -28,11 +28,7 @@ export default function App({ Component, pageProps }) {
         <meta name="theme-color" content="#000000" />
 
         <link rel="apple-touch-icon" href="/logo196.png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="/logo196.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/logo196.png" />
-        <link rel="apple-touch-icon" sizes="167x167" href="/logo196.png" />
 
-        <link rel="icon" type="image/png" sizes="32x32" href="/logo16.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/logo16.png" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="mask-icon" href="/logo.svg" color="#5bbad5" />
