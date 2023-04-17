@@ -7,7 +7,7 @@ export default function Home() {
   const [imageLoaded, setImageLoaded] = useState(false);
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    // fetch gallery images
+    // fetch all images
     setTimeout(() => {
       setImageLoaded(true);
     }, 500);

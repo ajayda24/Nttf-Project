@@ -9,9 +9,35 @@ import Favourites from "./Favourites";
 import CreateImage from "./CreateImage";
 import Chat from "./Chat";
 import UserProfile from "./UserProfile";
+import { useEffect } from "react";
+import { serverUrl } from "../../utils/constants";
 
 export default function DashboardPage() {
   const [user, loading] = useAuthentication();
+  useEffect(() => {
+    if (user) {
+      const { photoURL, uid, email, displayName, providerData } = user;
+      const provider = providerData[0];
+      fetch(`${serverUrl}/api/user/postUser`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          photoURL,
+          uid,
+          email: email || provider.email,
+          displayName,
+          provider,
+        }),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => console.log(res))
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [user]);
   const { userSelectedPage } = useSelector((state) => state.user);
 
   if (loading || !user) {
