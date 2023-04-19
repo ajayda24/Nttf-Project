@@ -6,6 +6,8 @@ import { serverUrl } from "@/utils/constants";
 export default function Gallery({ email }) {
   const [images, setImages] = useState([]);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [noImages, setNoImages] = useState(false);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     fetch(`${serverUrl}/api/user/getUserPosts/?email=${email}`)
@@ -14,7 +16,11 @@ export default function Gallery({ email }) {
       })
       .then((res) => {
         setImages(res.data);
-        setImageLoaded(true);
+        if (res.data.length >= 1) {
+          setImageLoaded(true);
+        } else {
+          setNoImages(true);
+        }
       })
       .catch((err) => {
         setImageLoaded(false);
@@ -39,7 +45,10 @@ export default function Gallery({ email }) {
           ))}
         </div>
       ) : (
-        <Spinner />
+        <Spinner
+          text={noImages ? "Create image with your creativity." : "Loading "}
+          stopSpin={noImages}
+        />
       )}
     </div>
   );
