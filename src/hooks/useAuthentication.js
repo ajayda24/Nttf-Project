@@ -16,7 +16,12 @@ export default function useAuthentication(forwardUrl) {
       } else if (user) {
         const { photoURL, uid, email, displayName } = user;
         dispatch(
-          setUser({ photoUrl: photoURL, uid, email, name: displayName })
+          setUser({
+            photoUrl: photoURL,
+            uid,
+            email: email || user.providerData[0].email,
+            name: displayName,
+          })
         );
         router.push(forwardUrl || "/dashboard");
       }

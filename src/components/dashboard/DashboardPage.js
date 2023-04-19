@@ -43,7 +43,10 @@ export default function DashboardPage() {
   if (loading || !user) {
     return <Spinner />;
   }
-  const { photoURL, uid, email, displayName } = user;
+  let { photoURL, uid, email, displayName } = user;
+  if (!email) {
+    email = user.providerData[0].email;
+  }
   return (
     <div className=" flex flex-col   min-h-screen min-w-full bg-[#12141D] relative  p-2 sm:p-5 select-none">
       <Navbar photoURL={photoURL} uid={uid} name={displayName} />
