@@ -1,26 +1,42 @@
 import { useEffect, useState } from "react";
 import Card from "./utils/Card";
 import Spinner from "../Spinner";
+import { serverUrl } from "@/utils/constants";
 
-export default function Gallery() {
+export default function Gallery({ email }) {
   const [images, setImages] = useState([]);
   const [imageLoaded, setImageLoaded] = useState(false);
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    // fetch gallery images
-    setTimeout(() => {
-      setImageLoaded(true);
-    }, 500);
+    fetch(`${serverUrl}/api/user/getUserPosts/?email=${email}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setImages(res.data);
+        setImageLoaded(true);
+      })
+      .catch((err) => {
+        setImageLoaded(false);
+        console.log(err);
+      });
   }, []);
   return (
     <div className="p-2 sm:p-5 py-8 text-white">
       <h2>Gallery</h2>
       {imageLoaded ? (
         <div className="p-5 flex justify-evenly flex-wrap gap-5 ">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {images.map((i) => (
+            <Card
+              key={i.postId}
+              postId={i.postId}
+              userLiked={i.userLiked}
+              likes={i.likes}
+              imageUrl={i.imageUrl}
+              userImage={i.userImage}
+              email={i.email}
+            />
+          ))}
         </div>
       ) : (
         <Spinner />

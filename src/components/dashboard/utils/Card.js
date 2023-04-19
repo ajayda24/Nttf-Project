@@ -12,25 +12,9 @@ export default function Card(props) {
 
   const [doneDoubleTap, setDoneDoubleTap] = useState(false);
   const [displayLove, setDisplayLove] = useState(false);
-  const {
-    imageId,
-    userLiked = false,
-    likes = 1950,
-    imageUrl = "",
-    userImage = "",
-    uid = "1234",
-    username = "zyx",
-  } = props;
+  const { postId, userLiked, likes, imageUrl, userImage, email } = props;
   const router = useRouter();
-  const [image, setImage] = useState({
-    imageId: imageId,
-    userLiked: userLiked,
-    likes: likes,
-    imageUrl: imageUrl,
-    userImage: userImage,
-    uid: uid,
-    username: username,
-  });
+  const [image, setImage] = useState(props);
   const reactImage = () => {
     // fetch update image
     setImage((prevState) => {
@@ -45,7 +29,7 @@ export default function Card(props) {
   };
 
   const userProfileClick = () => {
-    dispatch(changeUserSelectedPage(["userprofile", image.uid]));
+    dispatch(changeUserSelectedPage(["userprofile", image.email]));
   };
   const likeOnDoubleTap = (e) => {
     setDisplayLove(true);
@@ -67,7 +51,11 @@ export default function Card(props) {
         <MdOutlineFavorite className="text-red-500/80 text-6xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 " />
       )}
       <div className="absolute bottom-0 p-2 px-3 min-w-full bg-black/30 flex justify-between items-center ">
-        <UserIcon gotoProfile={userProfileClick} />
+        <UserIcon
+          gotoProfile={userProfileClick}
+          name={email}
+          photoUrl={userImage}
+        />
         <div className="flex gap-2 select-none">
           <p>{nFormatter(image.likes)}</p>
           {image.userLiked ? (

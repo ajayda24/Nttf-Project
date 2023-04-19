@@ -1,6 +1,7 @@
 import { HiOutlinePhotograph } from "react-icons/hi";
 import { GoHome } from "react-icons/go";
 import { BiImageAdd } from "react-icons/bi";
+import { FiPlusCircle } from "react-icons/fi";
 import { BsArrowThroughHeart } from "react-icons/bs";
 import { HiOutlineChatAlt2 } from "react-icons/hi";
 import { MdFavoriteBorder } from "react-icons/md";
@@ -48,7 +49,7 @@ export default function Footer() {
           } text-2xl`}
           onClick={() => dispatch(changeUserSelectedPage("gallery"))}
         />
-        <BiImageAdd
+        <FiPlusCircle
           className={`${
             selectAddButton ? "text-red-500" : "text-white"
           } text-2xl`}
