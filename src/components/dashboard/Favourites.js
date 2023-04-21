@@ -23,7 +23,6 @@ export default function Favourites({ email }) {
       })
       .catch((err) => {
         setImageLoaded(false);
-        console.log(err);
       });
   }, []);
   return (
@@ -40,6 +39,7 @@ export default function Favourites({ email }) {
               imageUrl={i.imageUrl}
               userImage={i.userImage}
               email={i.email}
+              currentUserEmail={email}
             />
           ))}
         </div>

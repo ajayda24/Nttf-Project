@@ -47,15 +47,20 @@ export default function DashboardPage() {
   if (!email) {
     email = user.providerData[0].email;
   }
+
   return (
     <div className=" flex flex-col   min-h-screen min-w-full bg-[#12141D] relative  p-2 sm:p-5 select-none">
       <Navbar photoURL={photoURL} uid={uid} name={displayName} />
-      {userSelectedPage == "home" && <Home />}
+      {userSelectedPage == "home" && <Home email={email} />}
       {userSelectedPage == "gallery" && <Gallery email={email} />}
-      {userSelectedPage == "add" && <CreateImage />}
+      {userSelectedPage == "add" && (
+        <CreateImage userImage={photoURL} email={email} />
+      )}
       {userSelectedPage == "favourites" && <Favourites email={email} />}
       {userSelectedPage == "chat" && <Chat />}
-      {userSelectedPage[0] == "userprofile" && <UserProfile />}
+      {userSelectedPage[0] == "userprofile" && (
+        <UserProfile email={email} fullName={displayName} photoUrl={photoURL} />
+      )}
       <Footer />
     </div>
   );

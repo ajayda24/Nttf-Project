@@ -20,6 +20,14 @@ const nextConfig = {
         protocol: "https",
         hostname: "*.githubusercontent.com",
       },
+      {
+        protocol: "https",
+        hostname: "*.windows.net",
+      },
+      {
+        protocol: "https",
+        hostname: "*.cloudinary.com",
+      },
     ],
   },
 };

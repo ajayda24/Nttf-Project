@@ -49,7 +49,7 @@ export default function HomePage() {
       <div className="mx-auto block w-fit m-5  text-xs text-white">
         <Link
           href="/dashboard"
-          className="rounded-md p-2 px-6 bg-gradient-to-r from-[#2B59FF] to-[#BB2BFF] "
+          className="z-50 relative rounded-md p-2 px-6 bg-gradient-to-r from-[#2B59FF] to-[#BB2BFF] "
         >
           Explore Now
         </Link>

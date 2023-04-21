@@ -41,6 +41,7 @@ export default function Gallery({ email }) {
               imageUrl={i.imageUrl}
               userImage={i.userImage}
               email={i.email}
+              currentUserEmail={email}
             />
           ))}
         </div>

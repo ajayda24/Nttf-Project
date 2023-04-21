@@ -3,13 +3,14 @@ import Spinner from "../Spinner";
 import Card from "./utils/Card";
 import { serverUrl } from "@/utils/constants";
 
-export default function Home() {
+export default function Home({ email }) {
   const [images, setImages] = useState([]);
   const [trendingImages, setTrendingImages] = useState([]);
   const [imageLoaded, setImageLoaded] = useState(false);
+  // console.log(images);
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    fetch(`${serverUrl}/api/user/getAllPosts`)
+    fetch(`${serverUrl}/api/user/getAllPosts?email=${email}`)
       .then((res) => {
         return res.json();
       })
@@ -21,7 +22,7 @@ export default function Home() {
         setImageLoaded(false);
         console.log(err);
       });
-    fetch(`${serverUrl}/api/user/getAllTrendingPosts`)
+    fetch(`${serverUrl}/api/user/getAllTrendingPosts?email=${email}`)
       .then((res) => {
         return res.json();
       })
@@ -48,6 +49,7 @@ export default function Home() {
               imageUrl={i.imageUrl}
               userImage={i.userImage}
               email={i.email}
+              currentUserEmail={email}
             />
           ))}
         </div>
@@ -68,6 +70,7 @@ export default function Home() {
                 imageUrl={i.imageUrl}
                 userImage={i.userImage}
                 email={i.email}
+                currentUserEmail={email}
               />
             ))}
           </div>
