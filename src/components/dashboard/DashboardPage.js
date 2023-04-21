@@ -59,7 +59,11 @@ export default function DashboardPage() {
       {userSelectedPage == "favourites" && <Favourites email={email} />}
       {userSelectedPage == "chat" && <Chat />}
       {userSelectedPage[0] == "userprofile" && (
-        <UserProfile email={email} fullName={displayName} photoUrl={photoURL} />
+        <UserProfile
+          email={userSelectedPage[1]}
+          fullName={displayName}
+          photoUrl={photoURL}
+        />
       )}
       <Footer />
     </div>
