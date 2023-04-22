@@ -9,6 +9,7 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>AI Ultra</title>
         <link rel="icon" type="image/png" href="/logo512.png"></link>
+        <meta name="monetag" content="adf7b1d9f782b209b3ad054aa9571e27"></meta>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
