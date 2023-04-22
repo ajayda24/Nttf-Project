@@ -2,14 +2,26 @@ import "@/styles/globals.css";
 import { store } from "@/store/store";
 import { Provider } from "react-redux";
 import Head from "next/head";
+import { useEffect } from "react";
 
 export default function App({ Component, pageProps }) {
+  useEffect(() => {
+    (function (s, u, z, p) {
+      (s.src = u), s.setAttribute("data-zone", z), p.appendChild(s);
+    })(
+      document.createElement("script"),
+      "https://inklinkor.com/tag.min.js",
+      5892234,
+      document.body || document.documentElement
+    );
+  }, []);
   return (
     <Provider store={store}>
       <Head>
         <title>AI Ultra</title>
         <link rel="icon" type="image/png" href="/logo512.png"></link>
         <meta name="monetag" content="adf7b1d9f782b209b3ad054aa9571e27"></meta>
+
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
