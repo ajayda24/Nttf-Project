@@ -6,26 +6,12 @@ import { useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
 
 export default function App({ Component, pageProps }) {
-  useEffect(() => {
-    (function (s, u, z, p) {
-      (s.src = u), s.setAttribute("data-zone", z), p.appendChild(s);
-    })(
-      document.createElement("script"),
-      "https://inklinkor.com/tag.min.js",
-      5892234,
-      document.body || document.documentElement
-    );
-  }, []);
   return (
     <>
       <Provider store={store}>
         <Head>
           <title>AI Ultra</title>
           <link rel="icon" type="image/png" href="/logo512.png"></link>
-          <meta
-            name="monetag"
-            content="adf7b1d9f782b209b3ad054aa9571e27"
-          ></meta>
 
           <meta
             name="viewport"
