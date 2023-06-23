@@ -3,92 +3,205 @@ import UserIcon from "./utils/UserIcon";
 import { IoSendSharp } from "react-icons/io5";
 
 export default function Chat() {
+  const currentUser = "ajaydtrevor@gmail.com";
   const [allChats, setAllChats] = useState([
     {
       uid: "",
       userImg: "",
-      username: "",
-      chat: "hello",
-      chatId: "",
-      currentUser: true,
+      username: "Saved Messages",
+      email: "ajaydtrevor@gmail.com",
+      chats: [
+        {
+          chatId: "1",
+          email: "sankeerthvk03@gmail.com",
+          chat: "Hello",
+          currentUser: true,
+        },
+        {
+          chatId: "2",
+          email: "sankeerthvk03@gmail.com",
+          chat: "Hi",
+          currentUser: false,
+        },
+        {
+          chatId: "10",
+          email: "sankeerthvk03@gmail.com",
+          chat: "I saw your new post. It was amazing",
+          currentUser: false,
+        },
+        {
+          chatId: "11",
+          email: "sankeerthvk03@gmail.com",
+          chat: "Thanks bro.",
+          currentUser: true,
+        },
+        {
+          chatId: "3",
+          email: "amalragvc7@gmail.com",
+          chat: "How was my new Picture?",
+          currentUser: true,
+        },
+        {
+          chatId: "4",
+          email: "amalragvc7@gmail.com",
+          chat: "It's fine, waiting for another epic.",
+          currentUser: false,
+        },
+        {
+          chatId: "5",
+          email: "ajaydtrevor@gmail.com",
+          chat: "Hi",
+          currentUser: true,
+        },
+        {
+          chatId: "6",
+          email: "ajaydtrevor@gmail.com",
+          chat: "I saved my messages here.",
+          currentUser: true,
+        },
+      ],
     },
     {
       uid: "",
       userImg: "",
-      username: "",
-      chat: "how are u?",
-      chatId: "",
+      username: "Sankeerth VK",
       currentUser: false,
+      email: "sankeerthvk03@gmail.com",
+      chats: [
+        {
+          chatId: "1",
+          email: "ajaydtrevor@gmail.com",
+          chat: "Hello",
+          currentUser: false,
+        },
+        {
+          chatId: "2",
+          email: "ajaydtrevor@gmail.com",
+          chat: "Hi",
+          currentUser: true,
+        },
+        {
+          chatId: "3",
+          email: "ajaydtrevor@gmail.com",
+          chat: "I saw your new post. It was amazing",
+          currentUser: true,
+        },
+        {
+          chatId: "3",
+          email: "ajaydtrevor@gmail.com",
+          chat: "Thanks bro.",
+          currentUser: false,
+        },
+      ],
     },
     {
       uid: "",
       userImg: "",
-      username: "",
-      chat: "fine bro.",
-      chatId: "",
-      currentUser: true,
-    },
-    {
-      uid: "",
-      userImg: "",
-      username: "",
-      chat: "Did you see my new image?",
-      chatId: "",
-      currentUser: false,
-    },
-    {
-      uid: "",
-      userImg: "",
-      username: "",
-      chat: "Yes, it is awesome.",
-      chatId: "",
-      currentUser: true,
-    },
-    {
-      uid: "",
-      userImg: "",
-      username: "",
-      chat: "Thanks",
-      chatId: "",
-      currentUser: false,
-    },
-    {
-      uid: "",
-      userImg: "",
-      username: "",
-      chat: "Waiting for another epic!",
-      chatId: "",
-      currentUser: true,
+      username: "Amalrag VC",
+      email: "amalragvc7@gmail.com",
+      chats: [
+        {
+          chatId: "3",
+          email: "ajaydtrevor@gmail.com",
+          chat: "How was my new Picture?",
+          currentUser: true,
+        },
+        {
+          chatId: "4",
+          email: "ajaydtrevor@gmail.com",
+          chat: "It's fine, waiting for another epic.",
+          currentUser: false,
+        },
+      ],
     },
   ]);
   const [chatText, setChatText] = useState("");
-  const sendChat = () => {
+  const sendChat = (currentUser, selectedUser) => {
     // fetch update chat array
-    setAllChats((p) => [...p, { currentUser: true, chat: chatText }]);
+    const getCurrentUserChats = allChats.find((e) => e.email === selectedUser);
+    const getOtherChats = allChats.filter((e) => e.email !== selectedUser);
+    getCurrentUserChats.chats.push({
+      chatId: "3",
+      email: currentUser,
+      chat: chatText,
+      currentUser: true,
+    });
+    setAllChats((p) => [getCurrentUserChats, ...getOtherChats]);
     setChatText("");
   };
+
+  const userProfileClick = (email) => {
+    dispatch(changeUserSelectedPage(["userprofile", email]));
+  };
+  const [selectedUser, setSelectedUser] = useState("ajaydtrevor@gmail.com");
   return (
-    <div className="p-2 text-white">
-      <div className="bg-black/20 w-full sm:w-96 sm:mx-auto  h-[80vh] relative flex flex-col justify-between p-2 overflow-hidden">
-        <h2 className="text-center p-2">Chat</h2>
-        <div className=" bg-black/20 w-full h-[80vh] overflow-y-scroll  sm:scrollbar-thin sm:scrollbar-thumb-[#12141d]/90 sm:scrollbar-track-[#12141D] mb-12">
-          <div className="flex flex-col gap-[3px] p-1 py-2">
-            {allChats.map((c, i) => (
-              <UserChat currentUser={c.currentUser} key={i} chat={c.chat} />
-            ))}
+    <div className="p-2 text-white shadow-2xl">
+      <div className="bg-black/20 w-full sm:max-w-sm lg:max-w-4xl sm:mx-auto  h-[80vh] p-1">
+        <div className="flex gap-1 h-[78vh]">
+          <div className="bg-white/5 shadow-2xl flex-auto w-2/5 h-full">
+            <h2 className="text-center p-2 ">All Chats</h2>
+            <div className="bg-black/10 max-h-full h-full">
+              {allChats.map((user, i) => {
+                return (
+                  <div
+                    key={i}
+                    className="p-4 flex  items-center gap-2 bg-black/10"
+                    onClick={() => setSelectedUser(user.email)}
+                  >
+                    <UserIcon
+                      gotoProfile={() => userProfileClick(user.email)}
+                      name={user.email}
+                      photoUrl={user.userImg}
+                    />
+                    {user.username}
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-        <div className="absolute bottom-0 w-[96%] p-1 bg-black flex items-center justify-evenly gap-2">
-          <div className="form-control w-full max-w-xs ">
-            <input
-              type="text"
-              placeholder="Type here"
-              className="input input-md input-ghost focus:bg-opacity-5 focus:text-white input-bordered w-full max-w-xs "
-              value={chatText}
-              onChange={(e) => setChatText(e.target.value)}
-            />
+          <div className="relative bg-white/5 shadow-2xl flex-auto w-3/5  h-full">
+            <h2 className="text-center p-2">
+              {allChats.find((e) => e.email === selectedUser).username}
+            </h2>
+            <div className="p-3 flex flex-col ">
+              {allChats
+                .find((e) => e.email === selectedUser)
+                .chats.map((chat, i) => {
+                  if (chat.email === currentUser) {
+                    return (
+                      <div
+                        key={i}
+                        className={`chat ${
+                          !chat.currentUser ? "chat-start" : "chat-end"
+                        }`}
+                      >
+                        <div className="chat-bubble">{chat.chat}</div>
+                      </div>
+                    );
+                  }
+                })}
+            </div>
+            <div className="absolute bottom-0 w-full p-1 px-3 bg-black/50 flex items-center justify-between gap-2">
+              <div className="form-control w-full  ">
+                <input
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-md input-ghost focus:bg-opacity-5 focus:text-white input-bordered w-full  "
+                  value={chatText}
+                  onChange={(e) => setChatText(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      sendChat(currentUser, selectedUser);
+                    }
+                  }}
+                />
+              </div>
+              <IoSendSharp
+                className="text-3xl"
+                onClick={() => sendChat(currentUser, selectedUser)}
+              />
+            </div>
           </div>
-          <IoSendSharp className="text-2xl" onClick={sendChat} />
         </div>
       </div>
     </div>

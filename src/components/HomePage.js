@@ -12,12 +12,11 @@ export default function HomePage() {
             <GiNestedHexagons />
             <Link href="/">AI ULTRA</Link>
           </li>
-          <li className="font-extralight text-sm text-[#e0e0e0] hidden md:block">
-            About
-          </li>
-          <li className="font-extralight text-sm text-[#e0e0e0] hidden md:block">
-            Blog
-          </li>
+          <Link href={"#about"}>
+            <li className="font-extralight text-sm text-[#e0e0e0] hidden md:block">
+              About
+            </li>
+          </Link>
         </ul>
         <ul className="flex gap-10">
           <li>

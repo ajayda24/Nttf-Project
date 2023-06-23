@@ -8,6 +8,10 @@ const initialState = {
     photoUrl: "",
     email: "",
   },
+  error: {
+    state: false,
+    message: "",
+  },
 };
 
 export const authSlice = createSlice({
@@ -20,10 +24,13 @@ export const authSlice = createSlice({
     setUser: (state, action) => {
       state.userData = action.payload;
     },
+    setError: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { changeUserSelectedPage, setUser } = authSlice.actions;
+export const { changeUserSelectedPage, setUser, setError } = authSlice.actions;
 
 export default authSlice.reducer;

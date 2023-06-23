@@ -7,10 +7,10 @@ import { serverUrl } from "@/utils/constants";
 
 export default function UserProfile({ email, fullName, photoUrl }) {
   const { userSelectedPage } = useSelector((state) => state.user);
-  console.log(userSelectedPage);
   const [noImages, setNoImages] = useState(false);
   const [images, setImages] = useState([]);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [author, setAuthor] = useState("");
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -30,12 +30,23 @@ export default function UserProfile({ email, fullName, photoUrl }) {
         setImageLoaded(false);
         console.log(err);
       });
+
+    fetch(`${serverUrl}/api/user/getUser/?email=${userSelectedPage[1]}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setAuthor(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
   return (
     <div className="p-2 sm:p-5 py-8 text-white">
       <div className="flex items-center gap-2">
-        <UserIcon name={fullName} photoUrl={photoUrl} />
-        <h2>{fullName}</h2>
+        <UserIcon name={author?.fullName} photoUrl={author?.userImage} />
+        <h2>{author?.fullName}</h2>
       </div>
       {imageLoaded ? (
         <div className="p-5 flex justify-evenly flex-wrap gap-5 ">

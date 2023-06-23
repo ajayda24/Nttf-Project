@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { auth } from "@/utils/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, getRedirectResult } from "@/utils/firebase";
+import { useAuthState, useIdToken } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/userSlice";
 

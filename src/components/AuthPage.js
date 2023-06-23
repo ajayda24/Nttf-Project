@@ -1,31 +1,82 @@
-import Link from "next/link"
-import Image from "next/image"
+import Link from "next/link";
+import Image from "next/image";
 
-import { GiNestedHexagons } from "react-icons/gi"
-import { FcGoogle } from "react-icons/fc"
-import { FaFacebook, FaGithub } from "react-icons/fa"
+import { GiNestedHexagons } from "react-icons/gi";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook, FaGithub } from "react-icons/fa";
 
-import loginLogo from "../../public/assets/images/login.svg"
+import loginLogo from "../../public/assets/images/login.svg";
 
-import { auth } from "../utils/firebase"
+import { auth } from "../utils/firebase";
 
 import {
   useSignInWithFacebook,
   useSignInWithGithub,
   useSignInWithGoogle,
-} from "react-firebase-hooks/auth"
-import Spinner from "./Spinner"
-import useAuthentication from "@/hooks/useAuthentication"
+} from "react-firebase-hooks/auth";
+import Spinner from "./Spinner";
+import useAuthentication from "@/hooks/useAuthentication";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setError } from "@/store/userSlice";
+import { CgSpinner } from "react-icons/cg";
 
 export default function AuthPage() {
-  const [signInWithGoogle] = useSignInWithGoogle(auth)
-  const [signInWithFacebook] = useSignInWithFacebook(auth)
-  const [signInWithGithub] = useSignInWithGithub(auth)
+  const dispatch = useDispatch();
+  const [loginLoading, setLoginLoading] = useState(null);
+  const [signInWithGoogle, usg, lg, eg] = useSignInWithGoogle(auth);
+  const [signInWithFacebook, usf, lf, ef] = useSignInWithFacebook(auth);
+  const [signInWithGithub, usgi, lgi, egi] = useSignInWithGithub(auth);
 
-  const [user, loading] = useAuthentication()
+  const [user, loading] = useAuthentication();
+
+  const socialSignUp = async (provider) => {
+    setLoginLoading(provider);
+
+    setTimeout(() => {
+      if (!user) {
+        dispatch(
+          setError({
+            state: true,
+            message: "This email already exist in different social media.",
+          })
+        );
+        setTimeout(() => {
+          dispatch(
+            setError({
+              state: false,
+              message: "",
+            })
+          );
+          setLoginLoading(null);
+        }, 5000);
+      }
+    }, 5000);
+    if (provider == "google") {
+      signInWithGoogle()
+        .then((u) => {
+          console.log(u, usg, lg, eg);
+        })
+        .catch((err) => console.log(err));
+    }
+    if (provider == "facebook") {
+      signInWithFacebook()
+        .then((u) => {
+          console.log(u, usf, lf, ef);
+        })
+        .catch((err) => console.log(err));
+    }
+    if (provider == "github") {
+      signInWithGithub()
+        .then((u) => {
+          console.log(u, usgi, lgi, egi);
+        })
+        .catch((err) => console.log(err));
+    }
+  };
 
   if (loading) {
-    return <Spinner />
+    return <Spinner />;
   }
   if (!user) {
     return (
@@ -47,29 +98,49 @@ export default function AuthPage() {
           />
           <button
             className="bg-white shadow-lg font-bold text-black text-base px-6 gap-3 py-2 flex  items-center  rounded-md"
-            // onClick={() => socialSignUp('google')}
-            onClick={() => signInWithGoogle()}
+            onClick={() => socialSignUp("google")}
+            // onClick={() => signInWithGoogle()}
           >
             <FcGoogle size={"1.3rem"} />
-            <p> Continue with Google</p>
+            {loginLoading == "google" ? (
+              <p className="flex gap-3 items-center justify-center">
+                Loading <CgSpinner className="animate-spin" />
+              </p>
+            ) : (
+              <p> Continue with Google</p>
+            )}
           </button>
           <button
             className="bg-blue-700 shadow-lg font-bold text-white text-base px-6 gap-3 py-2 flex  items-center mt-5 rounded-md"
-            onClick={() => signInWithFacebook()}
+            // onClick={() => signInWithFacebook()}
+            onClick={() => socialSignUp("facebook")}
             id="sign-in-phone"
           >
             <FaFacebook size={"1.5rem"} color="white" />
-            <p> Continue with Facebook</p>
+            {loginLoading == "facebook" ? (
+              <p className="flex gap-3 items-center justify-center">
+                Loading <CgSpinner className="animate-spin" />
+              </p>
+            ) : (
+              <p> Continue with Facebook</p>
+            )}
           </button>
           <button
             className="shadow-lg font-bold text-white bg-black text-base px-6 gap-3 py-2 flex  items-center mt-5 rounded-md"
-            onClick={() => signInWithGithub()}
+            // onClick={() => signInWithGithub()}
+            onClick={() => socialSignUp("github")}
           >
             <FaGithub size={"1.5rem"} />
-            <p> Continue with Github </p>
+            {loginLoading == "github" ? (
+              <p className="flex gap-3 items-center justify-center">
+                Loading <CgSpinner className="animate-spin" />
+              </p>
+            ) : (
+              <p> Continue with Github</p>
+            )}
           </button>
         </div>
       </div>
-    )
+    );
   }
 }
